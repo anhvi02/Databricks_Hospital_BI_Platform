@@ -1,0 +1,56 @@
+table dim_diagnoses
+	lineageTag: f78d3bf2-33e9-4d8b-b1e7-3738737f2cfe
+
+	column Diagnosis_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 5c3b0be5-694a-4cbd-991b-135666fe45e5
+		summarizeBy: none
+		sourceColumn: Diagnosis_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Diagnosis
+		dataType: string
+		lineageTag: 0955fc23-cf41-4ee0-9000-43e65a828d41
+		summarizeBy: none
+		sourceColumn: Diagnosis
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a54c6c85-edab-414a-a28b-6413e1513225
+		summarizeBy: none
+		sourceColumn: is_active
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 46917060-0939-45de-a0d8-302029066426
+		summarizeBy: none
+		sourceColumn: created_at
+
+		variation Variation
+			isDefault
+			relationship: 10b1c703-1414-4f0b-92be-9a70e709119c
+			defaultHierarchy: LocalDateTable_1dbc3fc3-04ba-4371-954e-a050cb191ed8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_diagnoses = m
+		mode: import
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("dbc-6da80bf3-23a8.cloud.databricks.com", "/sql/1.0/warehouses/df90c145035c5f8f", [Catalog="workspace", Database=null, EnableAutomaticProxyDiscovery=null]),
+				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
+				    hospital_gold_Schema = workspace_Database{[Name="hospital_gold",Kind="Schema"]}[Data],
+				    dim_diagnoses_Table = hospital_gold_Schema{[Name="dim_diagnoses",Kind="Table"]}[Data]
+				in
+				    dim_diagnoses_Table
+
+	annotation PBI_ResultType = Exception
+

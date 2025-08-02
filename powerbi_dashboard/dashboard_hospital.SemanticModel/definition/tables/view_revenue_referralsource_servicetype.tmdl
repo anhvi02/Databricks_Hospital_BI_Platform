@@ -1,0 +1,51 @@
+table view_revenue_referralsource_servicetype
+	lineageTag: ae951e93-4580-452e-a4c3-097cb8973dac
+
+	column Referral_Source
+		dataType: string
+		lineageTag: 828eba2c-2f1f-4e18-9ae6-7bce1fb62ccb
+		summarizeBy: none
+		sourceColumn: Referral_Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column Service_Type
+		dataType: string
+		lineageTag: 699218f7-405b-422e-bfba-8800f8178b47
+		summarizeBy: none
+		sourceColumn: Service_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Revenue
+		dataType: double
+		lineageTag: 92396895-6986-4d62-98e4-8d177bd5da90
+		summarizeBy: sum
+		sourceColumn: Revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Number_of_unique_patient
+		dataType: int64
+		formatString: 0
+		lineageTag: ad6299c5-db29-40c1-a16a-1e31c42597ca
+		summarizeBy: sum
+		sourceColumn: Number_of_unique_patient
+
+		annotation SummarizationSetBy = Automatic
+
+	partition view_revenue_referralsource_servicetype = m
+		mode: import
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("dbc-6da80bf3-23a8.cloud.databricks.com", "/sql/1.0/warehouses/df90c145035c5f8f", [Catalog="workspace", Database=null, EnableAutomaticProxyDiscovery=null]),
+				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
+				    hospital_gold_Schema = workspace_Database{[Name="hospital_gold",Kind="Schema"]}[Data],
+				    view_revenue_referralsource_servicetype_Table = hospital_gold_Schema{[Name="view_revenue_referralsource_servicetype",Kind="Table"]}[Data]
+				in
+				    view_revenue_referralsource_servicetype_Table
+
+	annotation PBI_ResultType = Table
+

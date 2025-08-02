@@ -1,0 +1,64 @@
+table dim_cities
+	lineageTag: 67a573ff-3abd-499f-89c3-e81f2afcddba
+
+	column City_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: f852967e-7607-4b17-a02e-0851d190ced7
+		summarizeBy: none
+		sourceColumn: City_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 90af4513-d9fd-4b8a-8277-aaeae9ed8893
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 3e37798b-c918-444c-9109-409bcb6659b1
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: bae27aa1-51ce-4f7c-beab-5d924895b7d6
+		summarizeBy: none
+		sourceColumn: is_active
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7f2e9dec-a221-4d0f-82a6-206f65644f4b
+		summarizeBy: none
+		sourceColumn: created_at
+
+		variation Variation
+			isDefault
+			relationship: db3bb7f9-58f3-40ec-b72c-6471cc2b63d1
+			defaultHierarchy: LocalDateTable_c468c6d1-af45-416e-8b6f-66ab7ddfee09.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_cities = m
+		mode: import
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("dbc-6da80bf3-23a8.cloud.databricks.com", "/sql/1.0/warehouses/df90c145035c5f8f", [Catalog="workspace", Database=null, EnableAutomaticProxyDiscovery=null]),
+				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
+				    hospital_gold_Schema = workspace_Database{[Name="hospital_gold",Kind="Schema"]}[Data],
+				    dim_cities_Table = hospital_gold_Schema{[Name="dim_cities",Kind="Table"]}[Data]
+				in
+				    dim_cities_Table
+
+	annotation PBI_ResultType = Exception
+

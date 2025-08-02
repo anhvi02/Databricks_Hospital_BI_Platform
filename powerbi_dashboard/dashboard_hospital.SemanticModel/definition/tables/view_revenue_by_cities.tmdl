@@ -1,0 +1,51 @@
+table view_revenue_by_cities
+	lineageTag: 3f839d84-1ddf-4ec8-a71a-81f9659b8ce2
+
+	column State
+		dataType: string
+		lineageTag: 2a4094b3-239c-47e9-807d-03d551823959
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 810de210-be96-4c71-b4bd-039e43582d08
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column Revenue
+		dataType: double
+		lineageTag: 8f0d9865-ac2b-49c0-86e1-4c8e4ece3786
+		summarizeBy: sum
+		sourceColumn: Revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Number_of_unique_patient
+		dataType: int64
+		formatString: 0
+		lineageTag: 9ce3dbf0-ab05-4d30-ab73-75562376cc47
+		summarizeBy: sum
+		sourceColumn: Number_of_unique_patient
+
+		annotation SummarizationSetBy = Automatic
+
+	partition view_revenue_by_cities = m
+		mode: import
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("dbc-6da80bf3-23a8.cloud.databricks.com", "/sql/1.0/warehouses/df90c145035c5f8f", [Catalog="workspace", Database=null, EnableAutomaticProxyDiscovery=null]),
+				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
+				    hospital_gold_Schema = workspace_Database{[Name="hospital_gold",Kind="Schema"]}[Data],
+				    view_revenue_by_cities_Table = hospital_gold_Schema{[Name="view_revenue_by_cities",Kind="Table"]}[Data]
+				in
+				    view_revenue_by_cities_Table
+
+	annotation PBI_ResultType = Exception
+

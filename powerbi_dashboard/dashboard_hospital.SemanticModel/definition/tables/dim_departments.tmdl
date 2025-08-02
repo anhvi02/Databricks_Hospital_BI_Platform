@@ -1,0 +1,56 @@
+table dim_departments
+	lineageTag: 24fac86a-8e9d-4131-9301-43e98abd0963
+
+	column Department_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: a00b1cb5-cd55-4f56-9949-056cea4ba301
+		summarizeBy: none
+		sourceColumn: Department_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Department
+		dataType: string
+		lineageTag: df4ac9fe-7c35-4ff2-b8b7-57d76d9825ec
+		summarizeBy: none
+		sourceColumn: Department
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: d0aac5b8-5903-47d7-b636-ceed356f781a
+		summarizeBy: none
+		sourceColumn: is_active
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a56be310-4585-4ce1-ae89-03ae54a9fd09
+		summarizeBy: none
+		sourceColumn: created_at
+
+		variation Variation
+			isDefault
+			relationship: 8fc23e21-2388-499f-a565-fe441fba1f6b
+			defaultHierarchy: LocalDateTable_6e5355d5-d048-471f-9107-4be1929ed8ed.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_departments = m
+		mode: import
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("dbc-6da80bf3-23a8.cloud.databricks.com", "/sql/1.0/warehouses/df90c145035c5f8f", [Catalog="workspace", Database=null, EnableAutomaticProxyDiscovery=null]),
+				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
+				    hospital_gold_Schema = workspace_Database{[Name="hospital_gold",Kind="Schema"]}[Data],
+				    dim_departments_Table = hospital_gold_Schema{[Name="dim_departments",Kind="Table"]}[Data]
+				in
+				    dim_departments_Table
+
+	annotation PBI_ResultType = Exception
+

@@ -1,0 +1,322 @@
+table fact_visits
+	lineageTag: eae5f25c-308b-4c9f-a95f-18f7dd7426b3
+
+	column Visit_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: c181fac6-8fc3-416f-aaad-c569346b4afa
+		summarizeBy: count
+		sourceColumn: Visit_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date_of_Visit
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 30e0b238-94b2-4899-99b5-cf0b5addf0a9
+		summarizeBy: none
+		sourceColumn: Date_of_Visit
+
+		variation Variation
+			isDefault
+			relationship: c45a8c78-65c7-45e7-8360-f8e11052f021
+			defaultHierarchy: LocalDateTable_0ecd348d-9fbc-4bf3-bcba-50d6c32cf419.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Patient_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 1ad95e19-4a70-4a68-9bca-a592b5778c1d
+		summarizeBy: none
+		sourceColumn: Patient_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Provider_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 1e7ce8c3-80ca-46ed-bcd6-4850f6443bb3
+		summarizeBy: none
+		sourceColumn: Provider_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Department_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: a8dc7b34-ed4e-403a-840d-d78142f22b3e
+		summarizeBy: none
+		sourceColumn: Department_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Diagnosis_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 383bae2f-d82a-4ca4-81ca-2ab09e1bb9b8
+		summarizeBy: none
+		sourceColumn: Diagnosis_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Procedure_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: bbaabedf-8363-4f65-b35d-231feb98d376
+		summarizeBy: none
+		sourceColumn: Procedure_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Insurance_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 82dd5e3b-d29a-46c6-bd6c-c6d9c7b53390
+		summarizeBy: none
+		sourceColumn: Insurance_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Service_Type
+		dataType: string
+		lineageTag: c7132d2e-a373-4ddb-b0f5-27c7e5c93abc
+		summarizeBy: none
+		sourceColumn: Service_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Treatment_Cost
+		dataType: double
+		lineageTag: 27e18100-2ab7-4135-bb7b-f72642395fb2
+		summarizeBy: sum
+		sourceColumn: Treatment_Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Medication_Cost
+		dataType: double
+		lineageTag: 4330bf38-8fc8-4b7a-b80b-33d969b0b1e6
+		summarizeBy: sum
+		sourceColumn: Medication_Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Follow_Up_Visit_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ef330c3d-556c-4bfb-9c80-6e12a3ab16d7
+		summarizeBy: none
+		sourceColumn: Follow_Up_Visit_Date
+
+		variation Variation
+			isDefault
+			relationship: 680f4b9c-74db-47db-9513-1aa106aeb346
+			defaultHierarchy: LocalDateTable_3adf1a80-3ba5-4b5e-94af-1258bcc52a62.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Patient_Satisfaction_Score
+		dataType: int64
+		formatString: 0
+		lineageTag: ec28839c-ac17-4398-abcf-63777a5c8e40
+		summarizeBy: sum
+		sourceColumn: Patient_Satisfaction_Score
+
+		annotation SummarizationSetBy = Automatic
+
+	column Referral_Source
+		dataType: string
+		lineageTag: 2d04b990-04b5-4fc4-8231-986844e7973b
+		summarizeBy: none
+		sourceColumn: Referral_Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column Emergency_Visit
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c5a36ec8-47ab-497a-95ad-21c20d071dc1
+		summarizeBy: none
+		sourceColumn: Emergency_Visit
+
+		annotation SummarizationSetBy = Automatic
+
+	column Payment_Status
+		dataType: string
+		lineageTag: 277dbd9a-eb3b-4e88-8f70-ea17ffae1264
+		summarizeBy: none
+		sourceColumn: Payment_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Discharge_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c165bee1-e3d2-4725-98ab-1cb7c34da773
+		summarizeBy: none
+		sourceColumn: Discharge_Date
+
+		variation Variation
+			isDefault
+			relationship: 5d42e15c-0885-4260-9889-698f517cba46
+			defaultHierarchy: LocalDateTable_d18fc242-9ced-4d5f-a413-f6035565c95f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Admitted_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2d8c2725-59c5-4822-862c-4be8fa01a793
+		summarizeBy: none
+		sourceColumn: Admitted_Date
+
+		variation Variation
+			isDefault
+			relationship: cbeb5153-da08-42e3-9073-f736598d2746
+			defaultHierarchy: LocalDateTable_631c8fe7-ab66-4f64-8420-eba55628db2e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Room_Type
+		dataType: string
+		lineageTag: 952178f8-a043-4c07-abc7-fd367990115d
+		summarizeBy: none
+		sourceColumn: Room_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Insurance_Coverage
+		dataType: double
+		lineageTag: 77702c19-7f9d-4c5b-905e-8caf767c976f
+		summarizeBy: sum
+		sourceColumn: Insurance_Coverage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Room_Charges_Daily_Rate
+		dataType: double
+		lineageTag: 6737c129-9fa2-485c-919a-1ba863060c70
+		summarizeBy: sum
+		sourceColumn: Room_Charges_Daily_Rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Was_Admitted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 397b1c41-76b3-4a5c-9046-61c30f6e39df
+		summarizeBy: none
+		sourceColumn: Was_Admitted
+
+		annotation SummarizationSetBy = Automatic
+
+	column Has_Follow_Up
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a3848f8f-b37e-427e-a423-b6f58f3a5ef0
+		summarizeBy: none
+		sourceColumn: Has_Follow_Up
+
+		annotation SummarizationSetBy = Automatic
+
+	column Length_of_Stay
+		dataType: int64
+		formatString: 0
+		lineageTag: 3440e00e-2cd3-4252-93e3-7b81ec1e035f
+		summarizeBy: sum
+		sourceColumn: Length_of_Stay
+
+		annotation SummarizationSetBy = Automatic
+
+	column Room_Cost
+		dataType: double
+		lineageTag: cccb03ee-4602-4fc5-ab5a-09c96d75de9f
+		summarizeBy: sum
+		sourceColumn: Room_Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Visit_Cost
+		dataType: double
+		lineageTag: afa9c9a1-e711-46db-ac40-eab72ad1f5cd
+		summarizeBy: sum
+		sourceColumn: Visit_Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Revenue_per_Visit
+		dataType: double
+		lineageTag: a966dfec-3aa3-4f11-aeb5-8e6d4030027a
+		summarizeBy: sum
+		sourceColumn: Revenue_per_Visit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Followed_up
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: deaaf818-217f-4c24-86d9-8820ae5c3221
+		summarizeBy: none
+		sourceColumn: Followed_up
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 59f2e353-a7cf-4b8c-bf85-8d954433730d
+		summarizeBy: none
+		sourceColumn: is_active
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5a966c5a-9ece-4c12-974c-2469ac89b601
+		summarizeBy: none
+		sourceColumn: created_at
+
+		variation Variation
+			isDefault
+			relationship: bdaa774e-76f3-479f-9e8a-13f55039317e
+			defaultHierarchy: LocalDateTable_e08a62a0-bf92-40a7-9d47-7f4f06717d8c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_visits = m
+		mode: import
+		source =
+				let
+				    Source = DatabricksMultiCloud.Catalogs("dbc-6da80bf3-23a8.cloud.databricks.com", "/sql/1.0/warehouses/df90c145035c5f8f", [Catalog="workspace", Database=null, EnableAutomaticProxyDiscovery=null]),
+				    workspace_Database = Source{[Name="workspace",Kind="Database"]}[Data],
+				    hospital_gold_Schema = workspace_Database{[Name="hospital_gold",Kind="Schema"]}[Data],
+				    fact_visits_Table = hospital_gold_Schema{[Name="fact_visits",Kind="Table"]}[Data]
+				in
+				    fact_visits_Table
+
+	annotation PBI_ResultType = Exception
+
