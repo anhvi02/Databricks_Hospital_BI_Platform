@@ -57,7 +57,7 @@ This project bridges theory with real-world implementation, applying advanced da
 
 ## ⚡ Data Pipeline
 
-### Delta Live Tables Implementation
+### Powered by PySpark & Delta Lake
 
 The pipeline follows a DAG (Directed Acyclic Graph) pattern with event-based orchestration:
 ![Databricks Pipeline](https://github.com/anhvi02/Databricks_Hospital_BI_Platform/blob/main/databricks_pipeline.png?raw=true)
